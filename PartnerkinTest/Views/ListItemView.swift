@@ -6,21 +6,22 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct ListItemView: View {
-    @Binding var conference: Conference
+    let conference: Conference
     
     var body: some View {
         VStack (spacing: 16) {
             
-            if conference.status == "canceled" {
+            if conference.status == .canceled {
                 HStack (spacing: 2) {
                     Image("bolt")
                         .resizable()
                         .frame(width: 10, height: 10)
                         .scaledToFit()
                     
-                    Text(conference.status)
+                    Text(conference.status.localized)
                         .font(.system(size: 11))
                         .fontWeight(.semibold)
                         .foregroundStyle(.colorOrange)
@@ -40,11 +41,13 @@ struct ListItemView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
             
             HStack(spacing: 0) {
-                Image("example")
+                
+                
+                KFImage(URL(string: conference.image.url))
                     .resizable()
                     .scaledToFill()
                     .frame(maxWidth: .infinity)
-                    .clipped() // prevents overflow when using .scaledToFill
+                    .clipped()
 
                 Text(conference.formattedStartDate)
                     .frame(maxWidth: .infinity)
@@ -52,7 +55,7 @@ struct ListItemView: View {
                     .fontWeight(.medium)
             }
             .frame(height: 104)
-            .background(conference.status == "canceled" ? .colorOrange.opacity(0.06) : .colorBlue.opacity(0.04))
+            .background(conference.status == .canceled ? .colorOrange.opacity(0.06) : .colorBlue.opacity(0.04))
             .cornerRadius(12)
             .padding(.vertical, 4)
             
@@ -83,16 +86,16 @@ struct ListItemView: View {
             
         }
         .padding(24)
-        .background(conference.status == "canceled" ? .colorOrange.opacity(0.08) : .colorGray)
+        .background(conference.status == .canceled ? .colorOrange.opacity(0.08) : .colorGray)
         .cornerRadius(16)
     }
 }
 
 #Preview {
-    ListItemView(conference: .constant(Conference(id: 1,
+    ListItemView(conference: Conference(id: 1,
                                                   name: "SiGMA Africa 2025",
                                                   format: "offline",
-                                                  status: "canceled",
+                                                    status: .canceled,
                                                   statusTitle: "Опубликована",
                                                   url: "sigma-africa-2025",
                                                   image: ConferenceImage(id: "f4bad773d6e5c03bc934706d88785bbf",
@@ -118,5 +121,5 @@ struct ListItemView: View {
                                                                             url: "marketing")
                                                   ],
                                                   typeID: 2,
-                                                  type: TypeClass(id: 2, name: "Конференция"))))
+                                                  type: TypeClass(id: 2, name: "Конференция")))
 }

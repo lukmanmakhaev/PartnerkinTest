@@ -5,3 +5,6 @@
   Created by Lukman Makhaev on 14.03.2025.
   
 */
+
+"conference_status_publish" = "Опубликовано";
+"conference_status_cancelled" = "Отменено";

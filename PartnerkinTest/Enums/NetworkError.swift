@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+enum NetworkError: Error {
+    case badURL
+    case apiError(String)
+    case decodingFailed(Error)
+}

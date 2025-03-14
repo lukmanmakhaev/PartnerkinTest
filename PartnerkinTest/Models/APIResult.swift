@@ -7,12 +7,12 @@
 
 import Foundation
 
-struct ResultModel: Codable {
+struct APIResult: Codable {
     let viewType: Int
     let conference: Conference
 
     enum CodingKeys: String, CodingKey {
-        case viewType
+        case viewType = "view_type"
         case conference
     }
 }

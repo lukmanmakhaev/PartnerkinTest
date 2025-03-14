@@ -6,3 +6,7 @@
 //
 
 import Foundation
+
+protocol NetworkServiceProtocol {
+    func fetchList() async throws -> APIData
+}

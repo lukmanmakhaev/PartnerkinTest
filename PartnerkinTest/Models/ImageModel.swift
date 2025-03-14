@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Image: Codable {
+struct ConferenceImage: Codable {
     let id: String
     let url, preview: String
     let placeholderColor: String?

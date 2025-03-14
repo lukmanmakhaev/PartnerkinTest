@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Response: Codable {
+struct APIResponse: Codable {
     let error: String?
-    let data: DataClass
+    let data: APIData
 }

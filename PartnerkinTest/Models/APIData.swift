@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct DataClass: Codable {
+struct APIData: Codable {
     let counts: Int
     let pagination: Pagination
     let result: [APIResult]
